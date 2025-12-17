@@ -73,22 +73,26 @@ def calc_M():
         if not results:
             return 'No applicable equation'
 
-        text = ''
+        lines = []
+
         for eq, ans, lower, upper in results:
-            text += f'{b} ({eq}): W = {ans:.0f} kN [{lower:.0f}, {upper:.0f}] kN\n'
+            lines.append(
+                f'{b} ({eq}): W = {ans:.0f} kN '
+                f'[{lower:.0f}, {upper:.0f}] kN'
+            )
 
         if len(results) > 1:
             mean_W = np.mean([ans for _, ans, _, _ in results])
             mean_lower = np.mean([lower for _, _, lower, _ in results])
             mean_upper = np.mean([upper for _, _, _, upper in results])
 
-            text += (
-                f'\n平均值:\n'
-                f'W = {mean_W:.0f} kN '
+            lines.append('-----------------------------')
+            lines.append(
+                f'平均值: W = {mean_W:.0f} kN '
                 f'[{mean_lower:.0f}, {mean_upper:.0f}] kN'
             )
 
-        return text
+        return lines
     elif b == structures[1]:
         results = []
         if S != 0:
@@ -103,22 +107,26 @@ def calc_M():
         if not results:
             return 'No applicable equation'
 
-        text = ''
+        lines = []
+
         for eq, ans, lower, upper in results:
-            text += f'{b} ({eq}): W = {ans:.0f} kN [{lower:.0f}, {upper:.0f}] kN\n'
+            lines.append(
+                f'{b} ({eq}): W = {ans:.0f} kN '
+                f'[{lower:.0f}, {upper:.0f}] kN'
+            )
 
         if len(results) > 1:
             mean_W = np.mean([ans for _, ans, _, _ in results])
             mean_lower = np.mean([lower for _, _, lower, _ in results])
             mean_upper = np.mean([upper for _, _, _, upper in results])
 
-            text += (
-                f'\n平均值:\n'
-                f'W = {mean_W:.0f} kN '
+            lines.append('-----------------------------')
+            lines.append(
+                f'平均值: W = {mean_W:.0f} kN '
                 f'[{mean_lower:.0f}, {mean_upper:.0f}] kN'
             )
 
-        return text
+        return lines
     elif b == structures[2]:
         results = []
         if S != 0:
@@ -136,22 +144,26 @@ def calc_M():
         if not results:
             return 'No applicable equation'
 
-        text = ''
+        lines = []
+
         for eq, ans, lower, upper in results:
-            text += f'{b} ({eq}): W = {ans:.0f} kN [{lower:.0f}, {upper:.0f}] kN\n'
+            lines.append(
+                f'{b} ({eq}): W = {ans:.0f} kN '
+                f'[{lower:.0f}, {upper:.0f}] kN'
+            )
 
         if len(results) > 1:
             mean_W = np.mean([ans for _, ans, _, _ in results])
             mean_lower = np.mean([lower for _, _, lower, _ in results])
             mean_upper = np.mean([upper for _, _, _, upper in results])
 
-            text += (
-                f'\n平均值:\n'
-                f'W = {mean_W:.0f} kN '
+            lines.append('-----------------------------')
+            lines.append(
+                f'平均值: W = {mean_W:.0f} kN '
                 f'[{mean_lower:.0f}, {mean_upper:.0f}] kN'
             )
 
-        return text
+        return lines
     elif b == structures[3]:
         results = []
         if S != 0:
@@ -169,27 +181,32 @@ def calc_M():
         if not results:
             return 'No applicable equation'
 
-        text = ''
+        lines = []
+
         for eq, ans, lower, upper in results:
-            text += f'{b} ({eq}): W = {ans:.0f} kN [{lower:.0f}, {upper:.0f}] kN\n'
+            lines.append(
+                f'{b} ({eq}): W = {ans:.0f} kN '
+                f'[{lower:.0f}, {upper:.0f}] kN'
+            )
 
         if len(results) > 1:
             mean_W = np.mean([ans for _, ans, _, _ in results])
             mean_lower = np.mean([lower for _, _, lower, _ in results])
             mean_upper = np.mean([upper for _, _, _, upper in results])
 
-            text += (
-                f'\n平均值:\n'
-                f'W = {mean_W:.0f} kN '
+            lines.append('-----------------------------')
+            lines.append(
+                f'平均值: W = {mean_W:.0f} kN '
                 f'[{mean_lower:.0f}, {mean_upper:.0f}] kN'
             )
 
-        return text
+        return lines
 
 solve = st.button("Calculate")
 if solve:
-    text = calc_M()
-    st.text(text)
+    results = calc_M()
+    for line in results:
+        st.write(line)
 
 
 st.write('---')
