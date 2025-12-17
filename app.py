@@ -189,7 +189,7 @@ def calc_M():
 solve = st.button("Calculate")
 if solve:
     text = calc_M()
-    st.write(text)
+    st.text(text)
 
 
 st.write('---')
