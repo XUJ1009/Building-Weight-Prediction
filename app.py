@@ -59,7 +59,10 @@ def calc_M():
         results = []
         if S != 0:
             ans, upper, lower = s11(S), s11u(S), s11d(S)
-            return f'{b} (Eq. 1): W = {ans:.0f} kN [{lower:.0f}, {upper:.0f}] kN'
+            return [
+                f'{b} (Eq. 1): W = {ans:.0f} kN '
+                f'[{lower:.0f}, {upper:.0f}] kN'
+            ]
         if L*B*N != 0:
             ans, upper, lower = np.power(10,s12(L,B,N)), np.power(10,s12u(L,B,N)), np.power(10,s12d(L,B,N))
             results.append(('Eq. 2', ans, lower, upper))
@@ -97,7 +100,10 @@ def calc_M():
         results = []
         if S != 0:
             ans, upper, lower = s21(S), s21u(S), s21d(S)
-            return f'{b} (Eq. 1): W = {ans:.0f} kN [{lower:.0f}, {upper:.0f}] kN'
+            return [
+                f'{b} (Eq. 1): W = {ans:.0f} kN '
+                f'[{lower:.0f}, {upper:.0f}] kN'
+            ]
         if L*B*N != 0:
             ans, upper, lower = np.power(10,s22(L,B,N)), np.power(10,s22u(L,B,N)), np.power(10,s22d(L,B,N))
             results.append(('Eq. 2', ans, lower, upper))
@@ -131,7 +137,10 @@ def calc_M():
         results = []
         if S != 0:
             ans, upper, lower = s31(S), s31u(S), s31d(S)
-            return f'{b} (Eq. 1): W = {ans:.0f} kN [{lower:.0f}, {upper:.0f}] kN'
+            return [
+                f'{b} (Eq. 1): W = {ans:.0f} kN '
+                f'[{lower:.0f}, {upper:.0f}] kN'
+            ]
         if L*B*N != 0:
             ans, upper, lower = np.power(10,s32(L,B,N)), np.power(10,s32u(L,B,N)), np.power(10,s32d(L,B,N))
             results.append(('Eq. 2', ans, lower, upper))
@@ -168,7 +177,10 @@ def calc_M():
         results = []
         if S != 0:
             ans, upper, lower = s41(S), s41u(S), s41d(S)
-            return f'{b} (Eq. 1): W = {ans:.0f} kN [{lower:.0f}, {upper:.0f}] kN'
+            return [
+                f'{b} (Eq. 1): W = {ans:.0f} kN '
+                f'[{lower:.0f}, {upper:.0f}] kN'
+            ]
         if L*B*N != 0:
             ans, upper, lower = np.power(10,s42(L,B,N)), np.power(10,s42u(L,B,N)), np.power(10,s42d(L,B,N))
             results.append(('Eq. 2', ans, lower, upper))
