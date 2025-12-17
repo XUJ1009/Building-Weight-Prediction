@@ -3,18 +3,18 @@ import numpy as np
 
 st.write("<h1 style='text-align:center'>Building Weight Calculator", unsafe_allow_html=True)
 
-structures = ['F-CW', 'F-SW', 'SW', 'F']
+structures = ['框架-核心筒', '框架-剪力墙', '剪力墙', '框架']
 col1, col2 = st.columns(2)
 
 with col1:
-    H = st.number_input("H (m)", min_value=0.00)
-    N = st.number_input("N", min_value=0.00)
-    L = st.number_input("L (m)", min_value=0.00)
-    b = st.selectbox('LFRS', structures)
+    H = st.number_input("结构高度 (m)", min_value=0.00)
+    N = st.number_input("楼层数", min_value=0.00)
+    L = st.number_input("平面长度 (m)", min_value=0.00)
+    b = st.selectbox('抗侧力体系', structures)
 with col2:
-    B = st.number_input("B (m)", min_value=0.00)
-    S = st.number_input("S (m$^2$)", min_value=0.00)
-    T = st.number_input("T (s)", min_value=0.00)
+    B = st.number_input("平面宽度 (m)", min_value=0.00)
+    S = st.number_input("建筑面积 (m$^2$)", min_value=0.00)
+    T = st.number_input("基本周期 (s)", min_value=0.00)
 
 # text = 'init'
 def calc_M():
