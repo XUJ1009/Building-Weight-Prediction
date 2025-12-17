@@ -75,10 +75,10 @@ def calc_M():
 
         text = ''
         for eq, ans, lower, upper in results:
-            text += f'{b} ({eq}): W = {W:.0f} kN [{lower:.0f}, {upper:.0f}] kN\n'
+            text += f'{b} ({eq}): W = {ans:.0f} kN [{lower:.0f}, {upper:.0f}] kN\n'
 
         if len(results) > 1:
-            mean_W = np.mean([W for _, W, _, _ in results])
+            mean_W = np.mean([ans for _, ans, _, _ in results])
             mean_lower = np.mean([lower for _, _, lower, _ in results])
             mean_upper = np.mean([upper for _, _, _, upper in results])
 
@@ -105,10 +105,10 @@ def calc_M():
 
         text = ''
         for eq, ans, lower, upper in results:
-            text += f'{b} ({eq}): W = {W:.0f} kN [{lower:.0f}, {upper:.0f}] kN\n'
+            text += f'{b} ({eq}): W = {ans:.0f} kN [{lower:.0f}, {upper:.0f}] kN\n'
 
         if len(results) > 1:
-            mean_W = np.mean([W for _, W, _, _ in results])
+            mean_W = np.mean([ans for _, ans, _, _ in results])
             mean_lower = np.mean([lower for _, _, lower, _ in results])
             mean_upper = np.mean([upper for _, _, _, upper in results])
 
@@ -138,10 +138,10 @@ def calc_M():
 
         text = ''
         for eq, ans, lower, upper in results:
-            text += f'{b} ({eq}): W = {W:.0f} kN [{lower:.0f}, {upper:.0f}] kN\n'
+            text += f'{b} ({eq}): W = {ans:.0f} kN [{lower:.0f}, {upper:.0f}] kN\n'
 
         if len(results) > 1:
-            mean_W = np.mean([W for _, W, _, _ in results])
+            mean_W = np.mean([ans for _, ans, _, _ in results])
             mean_lower = np.mean([lower for _, _, lower, _ in results])
             mean_upper = np.mean([upper for _, _, _, upper in results])
 
@@ -171,10 +171,10 @@ def calc_M():
 
         text = ''
         for eq, ans, lower, upper in results:
-            text += f'{b} ({eq}): W = {W:.0f} kN [{lower:.0f}, {upper:.0f}] kN\n'
+            text += f'{b} ({eq}): W = {ans:.0f} kN [{lower:.0f}, {upper:.0f}] kN\n'
 
         if len(results) > 1:
-            mean_W = np.mean([W for _, W, _, _ in results])
+            mean_W = np.mean([ans for _, ans, _, _ in results])
             mean_lower = np.mean([lower for _, _, lower, _ in results])
             mean_upper = np.mean([upper for _, _, _, upper in results])
 
