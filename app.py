@@ -56,63 +56,135 @@ def calc_M():
     cond4 = H != 0
 
     if b == structures[0]:
-        if cond1:
+        results = []
+        if S != 0:
             ans, upper, lower = s11(S), s11u(S), s11d(S)
-            text = f'{b} (Eq. 1) : W = {ans:.0f} kN [{lower:.0f}, {upper:.0f}]kN'
-        elif cond2:
+            return f'{b} (Eq. 1): W = {ans:.0f} kN [{lower:.0f}, {upper:.0f}] kN'
+        if L*B*N != 0:
             ans, upper, lower = np.power(10,s12(L,B,N)), np.power(10,s12u(L,B,N)), np.power(10,s12d(L,B,N))
-            text = f'{b} (Eq. 2) : W = {ans:.3f} kN [{lower:.0f}, {upper:.0f}]kN'
-        elif cond3:
+            results.append(('Eq. 2', ans, lower, upper))
+
+        if L*H*N*T != 0:
             ans, upper, lower = np.power(10,s13(L,H,N,T)), np.power(10,s13u(L,H,N,T)), np.power(10,s13d(L,H,N,T))
-            text = f'{b} (Eq. 3) : W = {ans:.3f} kN [{lower:.0f}, {upper:.0f}]kN'
-        elif cond4:
+            results.append(('Eq. 3', ans, lower, upper))
+        if H != 0:
             ans, upper, lower = s14(H), s14u(H), s14d(H)
-            text = f'{b} (Eq. 4) : W = {ans:.3f} kN [{lower:.0f}, {upper:.0f}]kN'
-        else:
-            text = 'no applicable equation'
+            results.append(('Eq. 4', ans, lower, upper))
+        if not results:
+            return 'No applicable equation'
+
+        text = ''
+        for eq, ans, lower, upper in results:
+            text += f'{b} ({eq}): W = {W:.0f} kN [{lower:.0f}, {upper:.0f}] kN\n'
+
+        if len(results) > 1:
+            mean_W = np.mean([W for _, W, _, _ in results])
+            mean_lower = np.mean([lower for _, _, lower, _ in results])
+            mean_upper = np.mean([upper for _, _, _, upper in results])
+
+            text += (
+                f'\n平均值:\n'
+                f'W = {mean_W:.0f} kN '
+                f'[{mean_lower:.0f}, {mean_upper:.0f}] kN'
+            )
+
+        return text
     elif b == structures[1]:
-        if cond1:
+        results = []
+        if S != 0:
             ans, upper, lower = s21(S), s21u(S), s21d(S)
-            text = f'{b} (Eq. 1) : W = {ans:.0f} kN [{lower:.0f}, {upper:.0f}]kN'
-        elif cond2:
+            return f'{b} (Eq. 1): W = {ans:.0f} kN [{lower:.0f}, {upper:.0f}] kN'
+        if L*B*N != 0:
             ans, upper, lower = np.power(10,s22(L,B,N)), np.power(10,s22u(L,B,N)), np.power(10,s22d(L,B,N))
-            text = f'{b} (Eq. 2) : W = {ans:.3f} kN [{lower:.0f}, {upper:.0f}]kN'
-        elif cond3:
+            results.append(('Eq. 2', ans, lower, upper))
+        if L*H*N*T != 0:
             ans, upper, lower = np.power(10,s23(L,H,N,T)), np.power(10,s23u(L,H,N,T)), np.power(10,s23d(L,H,N,T))
-            text = f'{b} (Eq. 3) : W = {ans:.3f} kN [{lower:.0f}, {upper:.0f}]kN'
-        else:
-            text = 'no applicable equation'
+            results.append(('Eq. 3', ans, lower, upper))
+        if not results:
+            return 'No applicable equation'
+
+        text = ''
+        for eq, ans, lower, upper in results:
+            text += f'{b} ({eq}): W = {W:.0f} kN [{lower:.0f}, {upper:.0f}] kN\n'
+
+        if len(results) > 1:
+            mean_W = np.mean([W for _, W, _, _ in results])
+            mean_lower = np.mean([lower for _, _, lower, _ in results])
+            mean_upper = np.mean([upper for _, _, _, upper in results])
+
+            text += (
+                f'\n平均值:\n'
+                f'W = {mean_W:.0f} kN '
+                f'[{mean_lower:.0f}, {mean_upper:.0f}] kN'
+            )
+
+        return text
     elif b == structures[2]:
-        if cond1:
+        results = []
+        if S != 0:
             ans, upper, lower = s31(S), s31u(S), s31d(S)
-            text = f'{b} (Eq. 1) : W = {ans:.0f} kN [{lower:.0f}, {upper:.0f}]kN'
-        elif cond2:
+            return f'{b} (Eq. 1): W = {ans:.0f} kN [{lower:.0f}, {upper:.0f}] kN'
+        if L*B*N != 0:
             ans, upper, lower = np.power(10,s32(L,B,N)), np.power(10,s32u(L,B,N)), np.power(10,s32d(L,B,N))
-            text = f'{b} (Eq. 2) : W = {ans:.3f} kN [{lower:.0f}, {upper:.0f}]kN'
-        elif cond3:
+            results.append(('Eq. 2', ans, lower, upper))
+        if L*H*N*T != 0:
             ans, upper, lower = np.power(10,s33(L,H,N,T)), np.power(10,s33u(L,H,N,T)), np.power(10,s33d(L,H,N,T))
-            text = f'{b} (Eq. 3) : W = {ans:.3f} kN [{lower:.0f}, {upper:.0f}]kN'
-        elif cond4:
+            results.append(('Eq. 3', ans, lower, upper))
+        if H != 0:
             ans, upper, lower = np.power(10,s34(H)), np.power(10,s34u(H)), np.power(10,s34d(H))
-            text = f'{b} (Eq. 4) : W = {ans:.3f} kN [{lower:.0f}, {upper:.0f}]kN'
-        else:
-            text = 'no applicable equation'
+            results.append(('Eq. 4', ans, lower, upper))
+        if not results:
+            return 'No applicable equation'
+
+        text = ''
+        for eq, ans, lower, upper in results:
+            text += f'{b} ({eq}): W = {W:.0f} kN [{lower:.0f}, {upper:.0f}] kN\n'
+
+        if len(results) > 1:
+            mean_W = np.mean([W for _, W, _, _ in results])
+            mean_lower = np.mean([lower for _, _, lower, _ in results])
+            mean_upper = np.mean([upper for _, _, _, upper in results])
+
+            text += (
+                f'\n平均值:\n'
+                f'W = {mean_W:.0f} kN '
+                f'[{mean_lower:.0f}, {mean_upper:.0f}] kN'
+            )
+
+        return text
     elif b == structures[3]:
-        if cond1:
+        results = []
+        if S != 0:
             ans, upper, lower = s41(S), s41u(S), s41d(S)
-            text = f'{b} (Eq. 1) : W = {ans:.0f} kN [{lower:.0f}, {upper:.0f}]kN'
-        elif cond2:
+            return f'{b} (Eq. 1): W = {ans:.0f} kN [{lower:.0f}, {upper:.0f}] kN'
+        if L*B*N != 0:
             ans, upper, lower = np.power(10,s42(L,B,N)), np.power(10,s42u(L,B,N)), np.power(10,s42d(L,B,N))
-            text = f'{b} (Eq. 2) : W = {ans:.3f} kN [{lower:.0f}, {upper:.0f}]kN'
-        elif cond3:
+            results.append(('Eq. 2', ans, lower, upper))
+        if L*H*N*T != 0:
             ans, upper, lower = np.power(10,s43(L,H,N,T)), np.power(10,s43u(L,H,N,T)), np.power(10,s43d(L,H,N,T))
-            text = f'{b} (Eq. 3) : W = {ans:.3f} kN [{lower:.0f}, {upper:.0f}]kN'
-        elif cond4:
+            results.append(('Eq. 3', ans, lower, upper))
+        if H != 0:
             ans, upper, lower = np.power(10,s44(H)), np.power(10,s44u(H)), np.power(10,s44d(H))
-            text = f'{b} (Eq. 4) : W = {ans:.3f} kN [{lower:.0f}, {upper:.0f}]kN'
-        else:
-            text = 'no applicable equation'
-    return text
+            results.append(('Eq. 4', ans, lower, upper))
+        if not results:
+            return 'No applicable equation'
+
+        text = ''
+        for eq, ans, lower, upper in results:
+            text += f'{b} ({eq}): W = {W:.0f} kN [{lower:.0f}, {upper:.0f}] kN\n'
+
+        if len(results) > 1:
+            mean_W = np.mean([W for _, W, _, _ in results])
+            mean_lower = np.mean([lower for _, _, lower, _ in results])
+            mean_upper = np.mean([upper for _, _, _, upper in results])
+
+            text += (
+                f'\n平均值:\n'
+                f'W = {mean_W:.0f} kN '
+                f'[{mean_lower:.0f}, {mean_upper:.0f}] kN'
+            )
+
+        return text
 
 solve = st.button("Calculate")
 if solve:
